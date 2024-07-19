@@ -41,9 +41,8 @@ class VK:
                'photo_sizes': 1,
                'v': self.version
                })
-        return response.json()
 
-    try:
+        else:
            my_id = input('Введите ID пользователя ВКонтакте: ')
            vk = VK(access_token, my_id)
            screen_name = vk.users_info()['response'][0]['screen_name']
@@ -53,16 +52,12 @@ class VK:
                print('Фото будут загружены из профиля пользователя с именем: ')
                print(vk.users_info()['response'][0]['first_name'])
 
-   except IndexError:
-       print('Неверный ID, попробуйте снова')
-   except UnboundLocalError:
-       print('Неверный ID, попробуйте снова')
-       my_id = id1
-   return my_id
+
 
 class Yandex:
     def __init__(self, token_ya):
         self.token = token_ya
+        ya = Yandex(token_ya)
 
     def do_folder(self):
         params = {'path': 'Kursovaya_rabota'}
@@ -84,7 +79,7 @@ class Yandex:
                                         headers=headers)
         return "Мы уже загрузили твои фото в папку, проверяй"
 
-ya = Yandex(token_ya)
+
 
 def do_data(self):
     data = vk.vk_download()
@@ -105,8 +100,7 @@ def get_file_name(self):
     list_photo_name = []
     list_ph = []
     for photos in vk.do_data()['response']['items']:
-        for i in tqdm(range(vk.do_data()['response']['count'])):
-            time.sleep(0.5)
+
         photo_url = photos['sizes'][-1]['url']
         name_photo = photos['likes']['count']
         date_photo = datetime.fromtimestamp(photos['date'])
@@ -130,7 +124,7 @@ def get_file_name(self):
             list_ph.append(photo_url)
     return list_photo_name
 
-my_id = start()
+
 vk = VK(access_token, my_id)
 
 token_ya = input('Введите токен с Полигона Яндекс.Диска: ')
